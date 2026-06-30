@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Container, PageHeader } from "@/components/site/primitives";
 import { ExpertiseCard } from "@/components/site/ExpertiseCard";
-import { expertiseAreas } from "@/content/site";
+import { useContent } from "@/lib/i18n";
 
 export const Route = createFileRoute("/research")({
   head: () => ({
@@ -21,23 +21,18 @@ export const Route = createFileRoute("/research")({
 });
 
 function Research() {
+  const content = useContent();
   return (
     <>
       <PageHeader
-        eyebrow="Research / Expertise"
-        title="Expertise across chemistry, biology and computation"
-        intro={
-          <p>
-            A multidisciplinary toolkit spanning enzyme science, computational and AI-guided drug
-            discovery, protein biochemistry, analytical and pharmaceutical R&D, and the study of
-            molecular mechanisms.
-          </p>
-        }
+        eyebrow={content.ui.research.eyebrow}
+        title={content.ui.research.title}
+        intro={<p>{content.ui.research.intro}</p>}
       />
 
       <section className="py-14 sm:py-20">
         <Container className="grid gap-6 lg:grid-cols-2">
-          {expertiseAreas.map((area) => (
+          {content.expertiseAreas.map((area) => (
             <ExpertiseCard
               key={area.title}
               icon={area.icon}

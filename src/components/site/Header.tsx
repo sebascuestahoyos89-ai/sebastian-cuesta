@@ -2,20 +2,22 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Download } from "lucide-react";
 import { profile } from "@/content/site";
+import { useLang } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-
-const nav = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/research", label: "Research / Expertise" },
-  { to: "/projects", label: "Projects" },
-  { to: "/publications", label: "Publications" },
-  { to: "/notes", label: "Scientific Notes" },
-  { to: "/contact", label: "Contact" },
-] as const;
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { lang, setLang, content } = useLang();
+
+  const nav = [
+    { to: "/", label: content.ui.nav.home },
+    { to: "/about", label: content.ui.nav.about },
+    { to: "/research", label: content.ui.nav.research },
+    { to: "/projects", label: content.ui.nav.projects },
+    { to: "/publications", label: content.ui.nav.publications },
+    { to: "/notes", label: content.ui.nav.notes },
+    { to: "/contact", label: content.ui.nav.contact },
+  ] as const;
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/80 backdrop-blur-xl">
@@ -45,20 +47,23 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          {/* Language toggle placeholder — Spanish content can be wired here later. */}
+          {/* Language toggle — switches the active content bundle (EN / ES). */}
           <button
             type="button"
-            disabled
-            title="Español coming soon"
-            className="hidden rounded-md border border-border px-2.5 py-1.5 text-xs font-semibold text-muted-foreground sm:inline-flex"
+            onClick={() => setLang(lang === "en" ? "es" : "en")}
+            title={lang === "en" ? "Cambiar a español" : "Switch to English"}
+            aria-label="Toggle language"
+            className="inline-flex items-center rounded-md border border-border px-2.5 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground"
           >
-            EN <span className="mx-1 opacity-40">/</span> ES
+            <span className={cn(lang === "en" && "text-foreground")}>EN</span>
+            <span className="mx-1 opacity-40">/</span>
+            <span className={cn(lang === "es" && "text-foreground")}>ES</span>
           </button>
           <a
             href={profile.links.cv}
             className="hidden items-center gap-2 rounded-md bg-gradient-accent px-3.5 py-2 text-sm font-semibold text-primary-foreground shadow-soft transition-transform hover:-translate-y-0.5 sm:inline-flex"
           >
-            <Download className="h-4 w-4" /> Download CV
+            <Download className="h-4 w-4" /> {content.ui.common.downloadCv}
           </a>
           <button
             type="button"
@@ -95,7 +100,7 @@ export function Header() {
             href={profile.links.cv}
             className="mt-1 inline-flex items-center gap-2 rounded-md bg-gradient-accent px-3.5 py-2.5 text-sm font-semibold text-primary-foreground"
           >
-            <Download className="h-4 w-4" /> Download CV
+            <Download className="h-4 w-4" /> {content.ui.common.downloadCv}
           </a>
         </nav>
       </div>

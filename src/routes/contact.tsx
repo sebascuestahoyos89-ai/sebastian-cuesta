@@ -4,6 +4,7 @@ import { Mail, Linkedin, GraduationCap, BadgeCheck, Download, Send } from "lucid
 import { Container, PageHeader } from "@/components/site/primitives";
 import { AnchorButton } from "@/components/site/buttons";
 import { profile } from "@/content/site";
+import { useContent } from "@/lib/i18n";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -23,33 +24,30 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
+  const content = useContent();
+  const t = content.ui.contact;
   const [sent, setSent] = useState(false);
 
   return (
     <>
-      <PageHeader
-        eyebrow="Contact"
-        title="Let's connect"
-        intro={
-          <p>
-            Please get in touch for biotech/pharma opportunities, scientific collaborations,
-            consulting discussions, invited talks, mentoring initiatives or research-related
-            enquiries.
-          </p>
-        }
-      />
+      <PageHeader eyebrow={t.eyebrow} title={t.title} intro={<p>{t.intro}</p>} />
 
       <section className="py-14 sm:py-20">
         <Container className="grid gap-10 lg:grid-cols-[1fr_1.2fr]">
           <div className="space-y-6">
             <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
-              <h2 className="font-display text-lg font-bold text-foreground">Direct contact</h2>
-              <a
-                href={profile.links.email}
-                className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-              >
-                <Mail className="h-4 w-4" /> {profile.emailDisplay}
-              </a>
+              <h2 className="font-display text-lg font-bold text-foreground">{t.directContact}</h2>
+              <div className="mt-3 space-y-2">
+                {profile.emails.map((mail) => (
+                  <a
+                    key={mail}
+                    href={`mailto:${mail}`}
+                    className="flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                  >
+                    <Mail className="h-4 w-4 shrink-0" /> {mail}
+                  </a>
+                ))}
+              </div>
               <div className="mt-6 grid gap-3">
                 <AnchorButton href={profile.links.linkedin} variant="outline">
                   <Linkedin className="h-4 w-4" /> LinkedIn
@@ -61,18 +59,17 @@ function Contact() {
                   <BadgeCheck className="h-4 w-4" /> ORCID
                 </AnchorButton>
                 <AnchorButton href={profile.links.cv}>
-                  <Download className="h-4 w-4" /> Download CV
+                  <Download className="h-4 w-4" /> {content.ui.common.downloadCv}
                 </AnchorButton>
               </div>
             </div>
           </div>
 
           <div className="rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-8">
-            <h2 className="font-display text-lg font-bold text-foreground">Send a message</h2>
+            <h2 className="font-display text-lg font-bold text-foreground">{t.sendMessage}</h2>
             {sent ? (
               <p className="mt-6 rounded-lg bg-secondary/60 p-4 text-sm text-foreground">
-                Thank you — your message is noted. This is a placeholder form; connect it to an email
-                service or backend to receive submissions.
+                {t.sentNote}
               </p>
             ) : (
               <form
@@ -84,7 +81,7 @@ function Contact() {
               >
                 <div className="grid gap-4 sm:grid-cols-2">
                   <label className="block text-sm">
-                    <span className="font-medium text-foreground">Name</span>
+                    <span className="font-medium text-foreground">{t.name}</span>
                     <input
                       required
                       type="text"
@@ -92,7 +89,7 @@ function Contact() {
                     />
                   </label>
                   <label className="block text-sm">
-                    <span className="font-medium text-foreground">Email</span>
+                    <span className="font-medium text-foreground">{t.email}</span>
                     <input
                       required
                       type="email"
@@ -101,7 +98,7 @@ function Contact() {
                   </label>
                 </div>
                 <label className="block text-sm">
-                  <span className="font-medium text-foreground">Message</span>
+                  <span className="font-medium text-foreground">{t.message}</span>
                   <textarea
                     required
                     rows={5}
@@ -112,7 +109,7 @@ function Contact() {
                   type="submit"
                   className="inline-flex items-center gap-2 rounded-md bg-gradient-accent px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft transition-transform hover:-translate-y-0.5"
                 >
-                  <Send className="h-4 w-4" /> Send message
+                  <Send className="h-4 w-4" /> {t.send}
                 </button>
               </form>
             )}

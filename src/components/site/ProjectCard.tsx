@@ -1,13 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import type { Project } from "@/content/site";
+import { useContent } from "@/lib/i18n";
 
 export function ProjectCard({ project }: { project: Project }) {
+  const content = useContent();
   return (
     <div className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-card">
       {project.draft && (
         <span className="mb-3 inline-flex w-fit items-center rounded-full bg-secondary px-2.5 py-1 text-xs font-semibold text-muted-foreground">
-          Current work
+          {content.ui.projects.currentWork}
         </span>
       )}
       <h3 className="font-display text-lg font-bold leading-snug text-foreground">
@@ -29,7 +31,7 @@ export function ProjectCard({ project }: { project: Project }) {
         params={{ slug: project.slug }}
         className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:gap-2.5"
       >
-        Read more <ArrowRight className="h-4 w-4" />
+        {content.ui.common.readMore} <ArrowRight className="h-4 w-4" />
       </Link>
     </div>
   );

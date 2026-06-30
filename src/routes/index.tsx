@@ -1,12 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Download, Linkedin, Mail, Award, FileText, Clock, FlaskConical, BriefcaseBusiness } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Download, Linkedin, Mail, Award, FileText, Clock, FlaskConical, BriefcaseBusiness, ArrowRight } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import headshot from "@/assets/headshot.jpg";
 import { Container, SectionHeading } from "@/components/site/primitives";
 import { LinkButton, AnchorButton } from "@/components/site/buttons";
 import { ProjectCard } from "@/components/site/ProjectCard";
 import { ExpertiseIcon } from "@/components/site/ExpertiseIcon";
-import { credibility, whatIWorkOn, projects, profile } from "@/content/site";
+import { profile } from "@/content/site";
+import { useContent } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,7 +29,9 @@ export const Route = createFileRoute("/")({
 const credIcons = [FileText, Award, Clock, BriefcaseBusiness, FlaskConical];
 
 function Home() {
-  const featured = projects.filter((p) => !p.draft).slice(0, 3);
+  const content = useContent();
+  const t = content.ui.home;
+  const featured = content.projects.filter((p) => !p.draft).slice(0, 3);
 
   return (
     <>
@@ -46,29 +49,25 @@ function Home() {
         <Container className="relative grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-[1.4fr_1fr]">
           <div className="animate-fade-up">
             <p className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1 text-xs font-semibold text-primary backdrop-blur">
-              {/* Easy to update: current role */}
-              {profile.role}
+              {content.profile.role}
             </p>
             <h1 className="mt-5 text-3xl font-extrabold leading-[1.1] text-foreground sm:text-4xl md:text-5xl">
-              Chemist & chemical biologist working across{" "}
-              <span className="text-gradient">biotechnology, biocatalysis, drug discovery</span> and
-              protein science.
+              {t.heroTitlePre} <span className="text-gradient">{t.heroTitleAccent}</span>{" "}
+              {t.heroTitlePost}
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              I combine computational chemistry, enzyme engineering, biochemical methods and
-              pharmaceutical R&D experience to understand molecular mechanisms and accelerate the
-              discovery of therapeutic molecules.
+              {t.heroIntro}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <LinkButton to="/research">View Research</LinkButton>
+              <LinkButton to="/research">{t.viewResearch}</LinkButton>
               <LinkButton to="/projects" variant="outline">
-                View Projects
+                {t.viewProjects}
               </LinkButton>
               <LinkButton to="/publications" variant="outline">
-                Publications
+                {content.ui.nav.publications}
               </LinkButton>
               <AnchorButton href={profile.links.cv} variant="soft">
-                <Download className="h-4 w-4" /> Download CV
+                <Download className="h-4 w-4" /> {content.ui.common.downloadCv}
               </AnchorButton>
             </div>
           </div>
@@ -84,9 +83,7 @@ function Home() {
                 height={1000}
               />
             </div>
-            <p className="mt-2 text-center text-xs text-muted-foreground">
-              Headshot placeholder — upload professional photo
-            </p>
+            <p className="mt-2 text-center text-xs text-muted-foreground">{t.headshotNote}</p>
           </div>
         </Container>
       </section>
@@ -95,7 +92,7 @@ function Home() {
       <section className="border-b border-border bg-card">
         <Container className="py-10">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {credibility.map((item, i) => {
+            {content.credibility.map((item, i) => {
               const Icon = credIcons[i % credIcons.length];
               return (
                 <div
@@ -111,21 +108,38 @@ function Home() {
         </Container>
       </section>
 
-      {/* What I work on */}
+      {/* Focus areas */}
       <section className="py-16 sm:py-20">
         <Container>
-          <SectionHeading eyebrow="Focus areas" title="What I work on" />
+          <SectionHeading eyebrow={t.focusEyebrow} title={t.focusTitle} />
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {whatIWorkOn.map((c) => (
+            {content.whatIWorkOn.map((c) => (
               <div
                 key={c.title}
-                className="rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-card"
+                className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-card"
               >
                 <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-accent text-primary-foreground">
                   <ExpertiseIcon name={c.icon} className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 font-display text-lg font-bold text-foreground">{c.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.text}</p>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{c.text}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {c.keywords.map((k) => (
+                    <span
+                      key={k}
+                      className="rounded-full bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground"
+                    >
+                      {k}
+                    </span>
+                  ))}
+                </div>
+                <Link
+                  to="/projects/$slug"
+                  params={{ slug: c.slug }}
+                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:gap-2.5"
+                >
+                  {content.ui.common.readMore} <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             ))}
           </div>
@@ -136,9 +150,9 @@ function Home() {
       <section className="border-y border-border bg-secondary/30 py-16 sm:py-20">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading eyebrow="Selected work" title="Featured projects" />
+            <SectionHeading eyebrow={t.selectedEyebrow} title={t.featuredTitle} />
             <LinkButton to="/projects" variant="outline">
-              All projects
+              {t.allProjects}
             </LinkButton>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -154,17 +168,17 @@ function Home() {
         <Container>
           <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-hero p-8 text-center shadow-card sm:p-14">
             <h2 className="mx-auto max-w-2xl text-2xl font-bold text-foreground sm:text-3xl">
-              Interested in collaboration, scientific consulting or biotech/pharma opportunities?
+              {t.ctaTitle}
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <LinkButton to="/contact">
-                <Mail className="h-4 w-4" /> Contact
+                <Mail className="h-4 w-4" /> {content.ui.common.contact}
               </LinkButton>
               <AnchorButton href={profile.links.cv} variant="outline">
-                <Download className="h-4 w-4" /> View CV
+                <Download className="h-4 w-4" /> {content.ui.common.viewCv}
               </AnchorButton>
               <AnchorButton href={profile.links.linkedin} variant="outline">
-                <Linkedin className="h-4 w-4" /> Connect on LinkedIn
+                <Linkedin className="h-4 w-4" /> {content.ui.common.connectLinkedin}
               </AnchorButton>
             </div>
           </div>

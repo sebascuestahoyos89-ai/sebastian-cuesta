@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Container, PageHeader } from "@/components/site/primitives";
 import { ProjectCard } from "@/components/site/ProjectCard";
-import { projects } from "@/content/site";
+import { useContent } from "@/lib/i18n";
 
 export const Route = createFileRoute("/projects/")({
   head: () => ({
@@ -21,23 +21,18 @@ export const Route = createFileRoute("/projects/")({
 });
 
 function Projects() {
+  const content = useContent();
   return (
     <>
       <PageHeader
-        eyebrow="Projects"
-        title="Method-focused scientific case studies"
-        intro={
-          <p>
-            High-level overviews of research directions and methodologies. These case studies focus
-            on scientific questions, approaches and skills rather than confidential or unpublished
-            details.
-          </p>
-        }
+        eyebrow={content.ui.projects.eyebrow}
+        title={content.ui.projects.title}
+        intro={<p>{content.ui.projects.intro}</p>}
       />
 
       <section className="py-14 sm:py-20">
         <Container className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => (
+          {content.projects.map((p) => (
             <ProjectCard key={p.slug} project={p} />
           ))}
         </Container>
