@@ -64,6 +64,8 @@ export function Header() {
           </button>
           <a
             href={profile.links.cv}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden items-center gap-2 rounded-md bg-gradient-accent px-3.5 py-2 text-sm font-semibold text-primary-foreground shadow-soft transition-transform hover:-translate-y-0.5 sm:inline-flex"
           >
             <Download className="h-4 w-4" /> {content.ui.common.downloadCv}
@@ -104,6 +106,8 @@ export function Header() {
           ))}
           <a
             href={profile.links.cv}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-1 inline-flex items-center gap-2 rounded-md bg-gradient-accent px-3.5 py-2.5 text-sm font-semibold text-primary-foreground"
           >
             <Download className="h-4 w-4" /> {content.ui.common.downloadCv}

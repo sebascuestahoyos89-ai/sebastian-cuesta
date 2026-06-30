@@ -70,7 +70,12 @@ export function Footer() {
             <Link href="/contact" className="font-medium text-primary hover:underline">
               {content.ui.common.getInTouch}
             </Link>
-            <a href={profile.links.cv} className="font-medium text-primary hover:underline">
+            <a
+              href={profile.links.cv}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-primary hover:underline"
+            >
               {content.ui.common.downloadCv}
             </a>
           </div>

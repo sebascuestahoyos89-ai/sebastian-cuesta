@@ -12,6 +12,8 @@ export function PublicationCard({ pub }: { pub: Publication }) {
       {pub.doi && (
         <a
           href={`https://doi.org/${pub.doi}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className="mt-1 inline-flex w-fit items-center gap-1 text-xs font-medium text-primary hover:underline"
         >
           <ExternalLink className="h-3.5 w-3.5" /> DOI: {pub.doi}

@@ -42,8 +42,14 @@ export function AnchorButton({
   className?: string;
   children: ReactNode;
 }) {
+  // Open external links and downloadable docs (PDF) in a new tab.
+  const external = /^https?:\/\//i.test(href) || href.endsWith(".pdf");
   return (
-    <a href={href} className={cn(base, variants[variant], className)}>
+    <a
+      href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      className={cn(base, variants[variant], className)}
+    >
       {children}
     </a>
   );
