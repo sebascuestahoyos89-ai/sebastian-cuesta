@@ -246,7 +246,7 @@ export const en = {
   profile: {
     role: "Postdoctoral Research Associate, University of Manchester",
     tagline:
-      "Chemist & chemical biologist working across biotechnology, biocatalysis, drug discovery and protein science.",
+      "From molecular mechanisms to therapeutic discovery.",
   },
   credibility: [
     "30+ peer-reviewed publications",
