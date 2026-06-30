@@ -54,12 +54,9 @@ export function HomeView() {
               {t.heroIntro}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <LinkButton to="/research">{t.viewResearch}</LinkButton>
-              <LinkButton to="/projects" variant="outline">
-                {t.viewProjects}
-              </LinkButton>
-              <LinkButton to="/publications" variant="outline">
-                {content.ui.nav.publications}
+              <LinkButton to="/projects">{content.ui.nav.work}</LinkButton>
+              <LinkButton to="/about" variant="outline">
+                {content.ui.nav.about}
               </LinkButton>
               <AnchorButton href={profile.links.cv} variant="soft">
                 <Download className="h-4 w-4" /> {content.ui.common.downloadCv}
@@ -72,13 +69,12 @@ export function HomeView() {
             <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-card">
               <img
                 src={headshot.src}
-                alt="Portrait placeholder of Sebastian Cuesta Hoyos — replace with professional headshot"
+                alt="Sebastian Cuesta Hoyos"
                 className="aspect-[4/5] w-full object-cover"
                 width={800}
                 height={1000}
               />
             </div>
-            <p className="mt-2 text-center text-xs text-muted-foreground">{t.headshotNote}</p>
           </div>
         </Container>
       </section>

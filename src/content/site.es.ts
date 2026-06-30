@@ -9,35 +9,35 @@ import { en, type Content, type Project } from "./site";
 const projects: Project[] = [
   {
     ...en.projects[0],
-    title: "Ingeniería de Enzimas para la Biosíntesis de Terapéuticos",
+    title: "Ingeniería de Enzimas para la Biosíntesis de Moléculas Terapéuticas",
     short:
-      "Exploración, caracterización y evolución de enzimas implicadas en la biosíntesis de moléculas de interés terapéutico, con énfasis en selectividad, alcance de sustratos y potencial biocatalítico.",
+      "Exploración, caracterización y evolución de enzimas implicadas en la biosíntesis de moléculas de interés terapéutico, con énfasis en la selectividad, la amplitud de sustrato y el potencial biocatalítico.",
     overview:
-      "Un caso de estudio centrado en métodos para descubrir, caracterizar e ingenierizar enzimas que construyen moléculas de interés terapéutico, combinando interpretación bioquímica y computacional.",
+      "Un caso de estudio centrado en métodos para descubrir, caracterizar y modificar mediante ingeniería enzimas que construyen moléculas de interés terapéutico, combinando interpretación bioquímica y computacional.",
     question:
-      "¿Cómo pueden descubrirse e ingenierizarse enzimas para habilitar rutas selectivas y sostenibles hacia moléculas terapéuticas complejas?",
+      "¿Cómo se pueden descubrir y modificar enzimas mediante ingeniería para crear rutas selectivas y sostenibles hacia moléculas terapéuticas complejas?",
     whyItMatters:
-      "Las enzimas pueden habilitar rutas selectivas y sostenibles hacia moléculas terapéuticas complejas, reduciendo el uso de reactivos agresivos y mejorando la estereo- y regioselectividad.",
+      "Las enzimas permiten rutas selectivas y sostenibles hacia moléculas terapéuticas complejas, reduciendo el uso de reactivos agresivos y mejorando la estereo- y regioselectividad.",
     approach:
-      "Combina caracterización bioquímica, ensayos enzimáticos, análisis del alcance de sustratos, interpretación estructural/computacional y razonamiento guiado por aprendizaje automático.",
+      "Combina caracterización bioquímica, ensayos enzimáticos, análisis de la amplitud de sustrato, interpretación estructural y computacional, y razonamiento guiado por aprendizaje automático.",
     methods: [
       "Expresión y purificación de proteínas",
       "Ensayos enzimáticos",
-      "Perfilado del alcance de sustratos",
+      "Caracterización de la amplitud de sustrato",
       "Análisis de rutas biosintéticas",
       "Interpretación estructural y computacional",
     ],
     relevance:
-      "La biocatálisis es cada vez más central en la química verde y la fabricación farmacéutica, apoyando síntesis selectivas, procesos escalables y nuevas químicas terapéuticas.",
+      "La biocatálisis es cada vez más central en la química verde y la fabricación farmacéutica, ya que respalda síntesis selectivas, procesos escalables y nuevas químicas terapéuticas.",
     outputs:
-      "Publicaciones seleccionadas se relacionan con cascadas enzimáticas, biosíntesis de beta-lactonas y ensamblaje de enlaces amida mediado por enzimas. Consulta la página de Publicaciones para la lista completa.",
+      "Algunas publicaciones seleccionadas tratan sobre cascadas enzimáticas, biosíntesis de beta-lactonas y ensamblaje de enlaces amida mediado por enzimas. Consulta la página de Publicaciones para ver la lista completa.",
     skills: en.projects[0].skills,
   },
   {
     ...en.projects[1],
     title: "Descubrimiento de Fármacos Computacional y Guiado por IA",
     short:
-      "Uso de modelado molecular, docking, dinámica molecular, química cuántica y aprendizaje automático para explorar dianas terapéuticas, predecir propiedades moleculares y apoyar flujos de descubrimiento de fármacos.",
+      "Uso de modelado molecular, docking, dinámica molecular, química cuántica y aprendizaje automático para explorar dianas terapéuticas, predecir propiedades moleculares y apoyar flujos de trabajo de descubrimiento de fármacos.",
     overview:
       "Un caso de estudio sobre la aplicación de métodos computacionales y basados en datos para priorizar compuestos, predecir propiedades moleculares y guiar decisiones experimentales en etapas tempranas.",
     question:
@@ -54,7 +54,7 @@ const projects: Project[] = [
       "Python, scikit-learn, WEKA (aprendizaje automático)",
     ],
     relevance:
-      "Los enfoques computacionales y guiados por IA son centrales en la I+D farmacéutica moderna, reduciendo tiempo y coste en la identificación de hits, optimización de líderes y predicción de propiedades.",
+      "Los enfoques computacionales y guiados por IA son centrales en la I+D farmacéutica moderna, ya que reducen el tiempo y el costo en la identificación de hits, la optimización de compuestos líder y la predicción de propiedades.",
     outputs:
       "Publicaciones seleccionadas cubren inhibidores de LRRK2, inhibidores de DPP-4, inhibidores de tirosinasa, reposicionamiento de fármacos para SARS-CoV-2, estudios QSAR y ElectroPredictor.",
     skills: en.projects[1].skills,
@@ -80,7 +80,7 @@ const projects: Project[] = [
       "Interpretación mecanística",
     ],
     relevance:
-      "La comprensión mecanística sustenta el diseño molecular racional, el desarrollo de catalizadores y la interpretación de la función enzimática relevante para biotecnología y farma.",
+      "La comprensión mecanística sustenta el diseño molecular racional, el desarrollo de catalizadores y la interpretación de la función enzimática, relevante para la biotecnología y la industria farmacéutica.",
     outputs:
       "Publicaciones seleccionadas abordan sustitución nucleofílica, ruptura de enlaces amida, deshidratación de fructosa/tagatosa, descomposición de éteres y reactividad química.",
     skills: en.projects[2].skills,
@@ -165,6 +165,13 @@ export const es: Content = {
       title: "Mecanismos moleculares y reactividad química",
     },
   ],
+  themes: [
+    { id: "biocatalysis", label: "Biocatálisis" },
+    { id: "computational", label: "Computacional e IA" },
+    { id: "mechanisms", label: "Mecanismos y reactividad" },
+    { id: "proteins", label: "Ciencia de proteínas" },
+    { id: "antimicrobial", label: "Péptidos y antiinfecciosos" },
+  ],
   publicationCategories: [
     "Descubrimiento de enzimas y biocatálisis",
     "Descubrimiento de fármacos computacional",
@@ -207,7 +214,7 @@ export const es: Content = {
   education: [
     { degree: "Doctorado en Biología Química", school: "Universidad de Manchester" },
     {
-      degree: "Máster en Descubrimiento de Fármacos y Biología Traslacional",
+      degree: "Maestría en Descubrimiento de Fármacos y Biología Traslacional",
       school: "Universidad de Edimburgo",
     },
     { degree: "Licenciatura en Química", school: "Pontificia Universidad Católica del Ecuador" },
@@ -228,9 +235,10 @@ export const es: Content = {
     nav: {
       home: "Inicio",
       about: "Sobre mí",
-      research: "Investigación / Experiencia",
+      research: "Investigación / Especialización",
       projects: "Proyectos",
       publications: "Publicaciones",
+      work: "Proyectos y publicaciones",
       notes: "Notas Científicas",
       contact: "Contacto",
     },
@@ -262,10 +270,11 @@ export const es: Content = {
     },
     about: {
       eyebrow: "Sobre mí",
-      title: "Un químico y biólogo químico multidisciplinar",
+      title: "Un químico y biólogo químico multidisciplinario",
       intro:
-        "Sebastian Cuesta Hoyos es un químico y biólogo químico multidisciplinar con experiencia en química computacional, I+D farmacéutica, descubrimiento de enzimas, biocatálisis, descubrimiento de fármacos y bioquímica experimental. Su trabajo integra enfoques computacionales y experimentales para comprender mecanismos moleculares y acelerar el descubrimiento de moléculas terapéuticas.",
+        "Sebastian Cuesta Hoyos es un químico y biólogo químico multidisciplinario con experiencia en química computacional, I+D farmacéutica, descubrimiento de enzimas, biocatálisis, descubrimiento de fármacos y bioquímica experimental. Su trabajo integra enfoques computacionales y experimentales para comprender mecanismos moleculares y acelerar el descubrimiento de moléculas terapéuticas.",
       currentRole: "Puesto actual",
+      expertise: "Áreas de especialización",
       education: "Formación",
       background: "Experiencia profesional",
       awards: "Beca y premios",
@@ -274,10 +283,19 @@ export const es: Content = {
         "Sebastian asesora a estudiantes e investigadores en etapas tempranas en Ecuador, apoyando el desarrollo de tesis, el diseño de investigación, el análisis de datos, la escritura científica y la investigación orientada a la publicación. Este trabajo busca fortalecer la capacidad científica y ayudar a los nuevos investigadores a producir ciencia rigurosa y de relevancia internacional.",
     },
     research: {
-      eyebrow: "Investigación / Experiencia",
-      title: "Experiencia en química, biología y computación",
+      eyebrow: "Investigación / Especialización",
+      title: "Especialización en química, biología y computación",
       intro:
-        "Un conjunto de herramientas multidisciplinar que abarca la ciencia enzimática, el descubrimiento de fármacos computacional y guiado por IA, la bioquímica de proteínas, la I+D analítica y farmacéutica, y el estudio de mecanismos moleculares.",
+        "Un conjunto de herramientas multidisciplinario que abarca la ciencia enzimática, el descubrimiento de fármacos computacional y guiado por IA, la bioquímica de proteínas, la I+D analítica y farmacéutica, y el estudio de mecanismos moleculares.",
+    },
+    work: {
+      eyebrow: "Trabajo seleccionado",
+      title: "Proyectos y publicaciones",
+      intro:
+        "Casos de estudio científicos centrados en métodos y publicaciones revisadas por pares, filtrables por tema de investigación.",
+      tabProjects: "Proyectos",
+      tabPublications: "Publicaciones",
+      all: "Todos",
     },
     projects: {
       eyebrow: "Proyectos",

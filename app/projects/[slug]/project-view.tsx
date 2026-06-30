@@ -115,7 +115,7 @@ export function ProjectView({ slug }: { slug: string }) {
                 ))}
               </div>
             </div>
-            <LinkButton to="/publications" variant="outline" className="w-full">
+            <LinkButton to="/projects" variant="outline" className="w-full">
               {t.viewPublications}
             </LinkButton>
           </aside>

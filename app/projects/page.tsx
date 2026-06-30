@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { ProjectsView } from "./projects-view";
 
 export const metadata: Metadata = {
-  title: "Projects — Sebastian Cuesta Hoyos",
+  title: "Projects & Publications — Sebastian Cuesta Hoyos",
   description:
-    "High-level, method-focused case studies in enzyme engineering, computational and AI-guided drug discovery, molecular mechanisms, and membrane-protein biochemistry.",
-  openGraph: { title: "Projects — Sebastian Cuesta Hoyos", url: "/projects" },
+    "Method-focused case studies and 30+ peer-reviewed publications across enzyme engineering, biocatalysis, computational and AI-guided drug discovery, molecular mechanisms and protein science.",
+  openGraph: { title: "Projects & Publications — Sebastian Cuesta Hoyos", url: "/projects" },
   alternates: { canonical: "/projects" },
 };
 

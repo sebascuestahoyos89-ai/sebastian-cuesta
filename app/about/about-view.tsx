@@ -1,7 +1,8 @@
 "use client";
 
 import { GraduationCap, Award, Briefcase, Users, CheckCircle2 } from "lucide-react";
-import { Container, PageHeader } from "@/components/site/primitives";
+import { Container, PageHeader, SectionHeading } from "@/components/site/primitives";
+import { ExpertiseCard } from "@/components/site/ExpertiseCard";
 import { useContent } from "@/lib/i18n";
 
 function Card({
@@ -78,6 +79,22 @@ export function AboutView() {
           <Card icon={Users} title={t.mentoring}>
             <p className="text-sm leading-relaxed text-muted-foreground">{t.mentoringText}</p>
           </Card>
+        </Container>
+      </section>
+
+      <section className="border-t border-border bg-secondary/30 py-14 sm:py-20">
+        <Container>
+          <SectionHeading eyebrow={content.ui.research.eyebrow} title={t.expertise} />
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {content.expertiseAreas.map((area) => (
+              <ExpertiseCard
+                key={area.title}
+                icon={area.icon}
+                title={area.title}
+                keywords={area.keywords}
+              />
+            ))}
+          </div>
         </Container>
       </section>
     </>

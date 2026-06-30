@@ -7,6 +7,7 @@ import { Menu, X, Download } from "lucide-react";
 import { profile } from "@/content/site";
 import { useLang } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { BenzeneMark } from "@/components/site/Logo";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -14,11 +15,8 @@ export function Header() {
   const { lang, setLang, content } = useLang();
 
   const nav = [
-    { to: "/", label: content.ui.nav.home },
     { to: "/about", label: content.ui.nav.about },
-    { to: "/research", label: content.ui.nav.research },
-    { to: "/projects", label: content.ui.nav.projects },
-    { to: "/publications", label: content.ui.nav.publications },
+    { to: "/projects", label: content.ui.nav.work },
     { to: "/notes", label: content.ui.nav.notes },
     { to: "/contact", label: content.ui.nav.contact },
   ] as const;
@@ -32,9 +30,7 @@ export function Header() {
           href="/"
           className="flex min-w-0 items-center gap-2 font-display text-base font-bold tracking-tight text-foreground"
         >
-          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-gradient-accent text-sm font-bold text-primary-foreground">
-            SC
-          </span>
+          <BenzeneMark className="h-8 w-8 shrink-0 text-primary" />
           <span className="truncate">{profile.name}</span>
         </Link>
 

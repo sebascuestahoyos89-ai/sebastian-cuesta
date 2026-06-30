@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
+import { profile, en } from "@/content/site";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -38,9 +39,28 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Sebastian Cuesta Hoyos",
+  name: profile.name,
+  url: SITE_URL,
   jobTitle: "Postdoctoral Research Associate",
+  email: profile.emailDisplay,
+  worksFor: { "@type": "Organization", name: "University of Manchester" },
   affiliation: { "@type": "Organization", name: "University of Manchester" },
+  alumniOf: en.education.map((e) => ({
+    "@type": "CollegeOrUniversity",
+    name: e.school,
+  })),
+  knowsAbout: [
+    "Biocatalysis",
+    "Enzyme engineering",
+    "Drug discovery",
+    "Computational chemistry",
+    "Molecular modelling",
+    "Protein science",
+    "Chemical biology",
+    "Quantum chemistry",
+    "Pharmaceutical R&D",
+  ],
+  sameAs: [profile.links.linkedin, profile.links.scholar, profile.links.orcid],
   description:
     "Chemist and chemical biologist working across biotechnology, biocatalysis, drug discovery, computational chemistry, enzyme engineering and protein science.",
 };

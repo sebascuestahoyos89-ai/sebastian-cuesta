@@ -9,6 +9,18 @@
 
 export type Lang = "en" | "es";
 
+// Shared research themes — language-neutral ids used to filter both projects and
+// publications from a single filter bar. Labels per language live in each
+// bundle's `themes`.
+export type ThemeId =
+  | "biocatalysis"
+  | "computational"
+  | "mechanisms"
+  | "proteins"
+  | "antimicrobial";
+
+export type Theme = { id: ThemeId; label: string };
+
 // Language-neutral profile data (links, emails, CV). Text fields that differ by
 // language (role, tagline) live inside each content bundle's `profile`.
 export const profile = {
@@ -29,6 +41,7 @@ export type Article = { title: string; url: string };
 
 export type Project = {
   slug: string;
+  themeId: ThemeId;
   title: string;
   short: string;
   keywords: string[];
@@ -49,6 +62,7 @@ export type PublicationCategory = string;
 export type Publication = {
   title: string;
   category: PublicationCategory;
+  themeId: ThemeId;
   note?: string;
   doi?: string;
 };
@@ -108,6 +122,7 @@ const drugDiscoveryArticles: Article[] = [
 const projects: Project[] = [
   {
     slug: "enzyme-engineering-biosynthesis",
+    themeId: "biocatalysis",
     title: "Enzyme Engineering for the Biosynthesis of Therapeutics",
     short:
       "Exploring, characterising and evolving enzymes involved in the biosynthesis of therapeutically relevant molecules, with emphasis on selectivity, substrate scope and biocatalytic potential.",
@@ -144,6 +159,7 @@ const projects: Project[] = [
   },
   {
     slug: "computational-ai-drug-discovery",
+    themeId: "computational",
     title: "Computational and AI-Guided Drug Discovery",
     short:
       "Using molecular modelling, docking, molecular dynamics, quantum chemistry and machine learning to explore therapeutic targets, predict molecular properties and support drug discovery workflows.",
@@ -181,6 +197,7 @@ const projects: Project[] = [
   },
   {
     slug: "molecular-mechanisms-reactivity",
+    themeId: "mechanisms",
     title: "Molecular Mechanisms and Chemical Reactivity",
     short:
       "Investigating how molecular structure controls chemical reactivity, selectivity and biological function through quantum chemistry, molecular modelling and mechanistic reasoning.",
@@ -216,6 +233,7 @@ const projects: Project[] = [
   },
   {
     slug: "membrane-proteins-nutrient-acquisition",
+    themeId: "proteins",
     title: "Membrane Proteins and Bacterial Nutrient Acquisition",
     short:
       "Current work focuses on biochemical and biophysical approaches to understand mycobacterial nutrient acquisition and membrane-protein function.",
@@ -359,6 +377,13 @@ export const en = {
       ],
     },
   ] as ExpertiseArea[],
+  themes: [
+    { id: "biocatalysis", label: "Biocatalysis" },
+    { id: "computational", label: "Computational & AI" },
+    { id: "mechanisms", label: "Mechanisms & reactivity" },
+    { id: "proteins", label: "Protein science" },
+    { id: "antimicrobial", label: "Antimicrobial & anti-infective" },
+  ] as Theme[],
   publicationCategories: [
     "Enzyme discovery & biocatalysis",
     "Computational drug discovery",
@@ -369,61 +394,73 @@ export const en = {
     {
       title: "Enzyme-mediated amide bond assembly — [add full citation]",
       category: "Enzyme discovery & biocatalysis",
+      themeId: "biocatalysis",
       note: "Add authors, journal and year.",
     },
     {
       title: "Beta-lactone biosynthesis and enzymatic cascades — [add full citation]",
       category: "Enzyme discovery & biocatalysis",
+      themeId: "biocatalysis",
       note: "Add authors, journal and year.",
     },
     {
       title: "LRRK2 inhibitors: computational study — [add full citation]",
       category: "Computational drug discovery",
+      themeId: "computational",
       note: "Add authors, journal and year.",
     },
     {
       title: "DPP-4 inhibitors via molecular modelling — [add full citation]",
       category: "Computational drug discovery",
+      themeId: "computational",
       note: "Add authors, journal and year.",
     },
     {
       title: "Tyrosinase inhibitors and QSAR — [add full citation]",
       category: "Computational drug discovery",
+      themeId: "computational",
       note: "Add authors, journal and year.",
     },
     {
       title: "SARS-CoV-2 drug repurposing — [add full citation]",
       category: "Computational drug discovery",
+      themeId: "computational",
       note: "Add authors, journal and year.",
     },
     {
       title: "ElectroPredictor: molecular property prediction — [add full citation]",
       category: "Computational drug discovery",
+      themeId: "computational",
       note: "Add authors, journal and year.",
     },
     {
       title: "Nucleophilic substitution mechanisms — [add full citation]",
       category: "Molecular mechanisms & chemical reactivity",
+      themeId: "mechanisms",
       note: "Add authors, journal and year.",
     },
     {
       title: "Amide bond cleavage reactivity — [add full citation]",
       category: "Molecular mechanisms & chemical reactivity",
+      themeId: "mechanisms",
       note: "Add authors, journal and year.",
     },
     {
       title: "Fructose/tagatose dehydration pathways — [add full citation]",
       category: "Molecular mechanisms & chemical reactivity",
+      themeId: "mechanisms",
       note: "Add authors, journal and year.",
     },
     {
       title: "Antimicrobial peptides: design and activity — [add full citation]",
       category: "Antimicrobial peptides & anti-infective discovery",
+      themeId: "antimicrobial",
       note: "Add authors, journal and year.",
     },
     {
       title: "Anti-infective discovery approaches — [add full citation]",
       category: "Antimicrobial peptides & anti-infective discovery",
+      themeId: "antimicrobial",
       note: "Add authors, journal and year.",
     },
   ] as Publication[],
@@ -465,6 +502,7 @@ export const en = {
       research: "Research / Expertise",
       projects: "Projects",
       publications: "Publications",
+      work: "Projects & publications",
       notes: "Scientific Notes",
       contact: "Contact",
     },
@@ -500,6 +538,7 @@ export const en = {
       intro:
         "Sebastian Cuesta Hoyos is a multidisciplinary chemist and chemical biologist with experience spanning computational chemistry, pharmaceutical R&D, enzyme discovery, biocatalysis, drug discovery and experimental biochemistry. His work integrates computational and experimental approaches to understand molecular mechanisms and accelerate the discovery of therapeutic molecules.",
       currentRole: "Current role",
+      expertise: "Areas of expertise",
       education: "Education",
       background: "Professional background",
       awards: "Fellowship & awards",
@@ -512,6 +551,15 @@ export const en = {
       title: "Expertise across chemistry, biology and computation",
       intro:
         "A multidisciplinary toolkit spanning enzyme science, computational and AI-guided drug discovery, protein biochemistry, analytical and pharmaceutical R&D, and the study of molecular mechanisms.",
+    },
+    work: {
+      eyebrow: "Selected work",
+      title: "Projects & publications",
+      intro:
+        "Method-focused scientific case studies and peer-reviewed publications, filterable by research theme.",
+      tabProjects: "Projects",
+      tabPublications: "Publications",
+      all: "All",
     },
     projects: {
       eyebrow: "Projects",
