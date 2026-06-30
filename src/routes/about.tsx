@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { GraduationCap, Award, Briefcase, Users, CheckCircle2 } from "lucide-react";
 import { Container, PageHeader } from "@/components/site/primitives";
-import { education, professionalBackground, awards, profile } from "@/content/site";
+import { useContent } from "@/lib/i18n";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -43,34 +43,24 @@ function Card({
 }
 
 function About() {
+  const content = useContent();
+  const t = content.ui.about;
   return (
     <>
-      <PageHeader
-        eyebrow="About"
-        title="A multidisciplinary chemist & chemical biologist"
-        intro={
-          <p>
-            Sebastian Cuesta Hoyos is a multidisciplinary chemist and chemical biologist with
-            experience spanning computational chemistry, pharmaceutical R&D, enzyme discovery,
-            biocatalysis, drug discovery and experimental biochemistry. His work integrates
-            computational and experimental approaches to understand molecular mechanisms and
-            accelerate the discovery of therapeutic molecules.
-          </p>
-        }
-      />
+      <PageHeader eyebrow={t.eyebrow} title={t.title} intro={<p>{t.intro}</p>} />
 
       <section className="py-14 sm:py-20">
         <Container className="grid gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border border-primary/30 bg-gradient-hero p-6 shadow-soft lg:col-span-2">
             <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-              Current role
+              {t.currentRole}
             </p>
-            <p className="mt-2 text-lg font-semibold text-foreground">{profile.role}</p>
+            <p className="mt-2 text-lg font-semibold text-foreground">{content.profile.role}</p>
           </div>
 
-          <Card icon={GraduationCap} title="Education">
+          <Card icon={GraduationCap} title={t.education}>
             <ul className="space-y-4">
-              {education.map((e) => (
+              {content.education.map((e) => (
                 <li key={e.degree}>
                   <p className="text-sm font-semibold text-foreground">{e.degree}</p>
                   <p className="text-sm text-muted-foreground">{e.school}</p>
@@ -79,9 +69,9 @@ function About() {
             </ul>
           </Card>
 
-          <Card icon={Briefcase} title="Professional background">
+          <Card icon={Briefcase} title={t.background}>
             <ul className="space-y-3">
-              {professionalBackground.map((b) => (
+              {content.professionalBackground.map((b) => (
                 <li key={b} className="flex gap-2.5 text-sm text-muted-foreground">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                   <span>{b}</span>
@@ -90,9 +80,9 @@ function About() {
             </ul>
           </Card>
 
-          <Card icon={Award} title="Fellowship & awards">
+          <Card icon={Award} title={t.awards}>
             <ul className="space-y-3">
-              {awards.map((a) => (
+              {content.awards.map((a) => (
                 <li key={a} className="flex gap-2.5 text-sm text-muted-foreground">
                   <Award className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                   <span>{a}</span>
@@ -101,13 +91,8 @@ function About() {
             </ul>
           </Card>
 
-          <Card icon={Users} title="Scientific mentoring & capacity building">
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Sebastian mentors students and early-career researchers in Ecuador, supporting thesis
-              development, research design, data analysis, scientific writing and
-              publication-oriented research. This work aims to strengthen scientific capacity and
-              help emerging researchers produce rigorous, internationally relevant science.
-            </p>
+          <Card icon={Users} title={t.mentoring}>
+            <p className="text-sm leading-relaxed text-muted-foreground">{t.mentoringText}</p>
           </Card>
         </Container>
       </section>

@@ -4,7 +4,8 @@ import { GraduationCap, BadgeCheck, Linkedin } from "lucide-react";
 import { Container, PageHeader } from "@/components/site/primitives";
 import { AnchorButton } from "@/components/site/buttons";
 import { PublicationCard } from "@/components/site/PublicationCard";
-import { publications, publicationCategories, profile } from "@/content/site";
+import { profile } from "@/content/site";
+import { useContent } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/publications")({
@@ -25,24 +26,16 @@ export const Route = createFileRoute("/publications")({
 });
 
 function Publications() {
-  const [active, setActive] = useState<string>("All");
-  const filters = ["All", ...publicationCategories];
+  const content = useContent();
+  const t = content.ui.publications;
+  const [active, setActive] = useState<string>(t.all);
+  const filters = [t.all, ...content.publicationCategories];
   const list =
-    active === "All" ? publications : publications.filter((p) => p.category === active);
+    active === t.all ? content.publications : content.publications.filter((p) => p.category === active);
 
   return (
     <>
-      <PageHeader
-        eyebrow="Publications"
-        title="Peer-reviewed research"
-        intro={
-          <p>
-            Sebastian has authored 30+ peer-reviewed publications across computational chemistry,
-            drug discovery, molecular modelling, antimicrobial peptides, chemical reactivity, enzyme
-            mechanisms and biocatalysis.
-          </p>
-        }
-      />
+      <PageHeader eyebrow={t.eyebrow} title={t.title} intro={<p>{t.intro}</p>} />
 
       <section className="py-12 sm:py-16">
         <Container>
@@ -83,8 +76,7 @@ function Publications() {
           </div>
 
           <p className="mt-10 rounded-xl border border-border bg-secondary/40 p-4 text-sm text-muted-foreground">
-            For the most updated citation metrics, please visit Google Scholar. Publication entries
-            shown here are placeholders — replace titles and add DOI links once verified.
+            {t.footer}
           </p>
         </Container>
       </section>
