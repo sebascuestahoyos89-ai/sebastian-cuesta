@@ -116,7 +116,7 @@ export const es: Content = {
   profile: {
     role: "Investigador Postdoctoral, Universidad de Manchester",
     tagline:
-      "Químico y biólogo químico que trabaja en biotecnología, biocatálisis, descubrimiento de fármacos y ciencia de proteínas.",
+      "Desde los mecanismos moleculares hasta el descubrimiento terapéutico.",
   },
   credibility: [
     "Más de 30 publicaciones revisadas por pares",
@@ -244,9 +244,9 @@ export const es: Content = {
       relatedArticles: "Artículos de investigación relacionados",
     },
     home: {
-      heroTitlePre: "Químico y biólogo químico que trabaja en",
-      heroTitleAccent: "biotecnología, biocatálisis, descubrimiento de fármacos",
-      heroTitlePost: "y ciencia de proteínas.",
+      heroTitlePre: "Desde los mecanismos moleculares hasta el",
+      heroTitleAccent: "descubrimiento terapéutico",
+      heroTitlePost: "",
       heroIntro:
         "De los mecanismos moleculares al descubrimiento terapéutico: combino química computacional, experiencia en I+D farmacéutica y bioquímica experimental para estudiar enzimas, proteínas y reconocimiento molecular, con aplicaciones en biocatálisis, biotecnología y descubrimiento de fármacos.",
       viewResearch: "Ver Investigación",
@@ -330,7 +330,7 @@ export const es: Content = {
     },
     footer: {
       blurb:
-        "Químico y biólogo químico que trabaja en biotecnología, biocatálisis, descubrimiento de fármacos y ciencia de proteínas.",
+        "Desde los mecanismos moleculares hasta el descubrimiento terapéutico.",
       connect: "Conectar",
       contact: "Contacto",
       rights: "Todos los derechos reservados.",
