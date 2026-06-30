@@ -246,7 +246,7 @@ export const en = {
   profile: {
     role: "Postdoctoral Research Associate, University of Manchester",
     tagline:
-      "Chemist & chemical biologist working across biotechnology, biocatalysis, drug discovery and protein science.",
+      "From molecular mechanisms to therapeutic discovery.",
   },
   credibility: [
     "30+ peer-reviewed publications",
@@ -478,9 +478,9 @@ export const en = {
       relatedArticles: "Related research articles",
     },
     home: {
-      heroTitlePre: "Chemist & chemical biologist working across",
-      heroTitleAccent: "biotechnology, biocatalysis, drug discovery",
-      heroTitlePost: "and protein science.",
+      heroTitlePre: "From molecular mechanisms to",
+      heroTitleAccent: "therapeutic discovery",
+      heroTitlePost: "",
       heroIntro:
         "From molecular mechanisms to therapeutic discovery — I combine computational chemistry, pharmaceutical R&D experience and experimental biochemistry to study enzymes, proteins and molecular recognition, with applications in biocatalysis, biotechnology and drug discovery.",
       viewResearch: "View Research",
@@ -564,7 +564,7 @@ export const en = {
     },
     footer: {
       blurb:
-        "Chemist & chemical biologist working across biotechnology, biocatalysis, drug discovery and protein science.",
+        "From molecular mechanisms to therapeutic discovery.",
       connect: "Connect",
       contact: "Contact",
       rights: "All rights reserved.",
