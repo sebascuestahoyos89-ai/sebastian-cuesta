@@ -10,6 +10,8 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -77,19 +79,52 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Sebastian Cuesta Hoyos | Chemist & Chemical Biologist" },
+      {
+        name: "description",
+        content:
+          "Personal website of Sebastian Cuesta Hoyos, a chemist and chemical biologist working across biotechnology, biocatalysis, drug discovery, computational chemistry, enzyme engineering and protein science.",
+      },
+      {
+        name: "keywords",
+        content:
+          "Sebastian Cuesta Hoyos, chemist, chemical biologist, biotechnology, biocatalysis, drug discovery, computational chemistry, enzyme engineering, molecular modelling, protein science, pharmaceutical R&D, University of Manchester, MSCA Postdoctoral Fellow",
+      },
+      { name: "author", content: "Sebastian Cuesta Hoyos" },
+      { property: "og:title", content: "Sebastian Cuesta Hoyos | Chemist & Chemical Biologist" },
+      {
+        property: "og:description",
+        content:
+          "Chemist and chemical biologist working across biotechnology, biocatalysis, drug discovery, computational chemistry, enzyme engineering and protein science.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:site_name", content: "Sebastian Cuesta Hoyos" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Sebastian Cuesta Hoyos",
+          jobTitle: "Postdoctoral Research Associate",
+          affiliation: { "@type": "Organization", name: "University of Manchester" },
+          description:
+            "Chemist and chemical biologist working across biotechnology, biocatalysis, drug discovery, computational chemistry, enzyme engineering and protein science.",
+        }),
       },
     ],
   }),
@@ -118,8 +153,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </QueryClientProvider>
   );
 }
