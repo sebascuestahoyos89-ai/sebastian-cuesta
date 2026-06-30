@@ -1,24 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+"use client";
+
 import { GraduationCap, Award, Briefcase, Users, CheckCircle2 } from "lucide-react";
 import { Container, PageHeader } from "@/components/site/primitives";
 import { useContent } from "@/lib/i18n";
-
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — Sebastian Cuesta Hoyos" },
-      {
-        name: "description",
-        content:
-          "Biography of Sebastian Cuesta Hoyos: a multidisciplinary chemist and chemical biologist integrating computational and experimental approaches across pharma R&D, biocatalysis and protein science.",
-      },
-      { property: "og:title", content: "About — Sebastian Cuesta Hoyos" },
-      { property: "og:url", content: "/about" },
-    ],
-    links: [{ rel: "canonical", href: "/about" }],
-  }),
-  component: About,
-});
 
 function Card({
   icon: Icon,
@@ -42,7 +26,7 @@ function Card({
   );
 }
 
-function About() {
+export function AboutView() {
   const content = useContent();
   const t = content.ui.about;
   return (

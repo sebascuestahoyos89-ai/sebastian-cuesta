@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+"use client";
+
 import { useState } from "react";
 import { Mail, Linkedin, GraduationCap, BadgeCheck, Download, Send } from "lucide-react";
 import { Container, PageHeader } from "@/components/site/primitives";
@@ -6,24 +7,7 @@ import { AnchorButton } from "@/components/site/buttons";
 import { profile } from "@/content/site";
 import { useContent } from "@/lib/i18n";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — Sebastian Cuesta Hoyos" },
-      {
-        name: "description",
-        content:
-          "Get in touch for biotech/pharma opportunities, scientific collaborations, consulting discussions, invited talks, mentoring initiatives or research-related enquiries.",
-      },
-      { property: "og:title", content: "Contact — Sebastian Cuesta Hoyos" },
-      { property: "og:url", content: "/contact" },
-    ],
-    links: [{ rel: "canonical", href: "/contact" }],
-  }),
-  component: Contact,
-});
-
-function Contact() {
+export function ContactView() {
   const content = useContent();
   const t = content.ui.contact;
   const [sent, setSent] = useState(false);

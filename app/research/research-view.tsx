@@ -1,26 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+"use client";
+
 import { Container, PageHeader } from "@/components/site/primitives";
 import { ExpertiseCard } from "@/components/site/ExpertiseCard";
 import { useContent } from "@/lib/i18n";
 
-export const Route = createFileRoute("/research")({
-  head: () => ({
-    meta: [
-      { title: "Research & Expertise — Sebastian Cuesta Hoyos" },
-      {
-        name: "description",
-        content:
-          "Expertise across enzyme discovery and biocatalysis, computational and AI-guided drug discovery, protein science and biochemistry, analytical and pharmaceutical R&D, and molecular mechanisms.",
-      },
-      { property: "og:title", content: "Research & Expertise — Sebastian Cuesta Hoyos" },
-      { property: "og:url", content: "/research" },
-    ],
-    links: [{ rel: "canonical", href: "/research" }],
-  }),
-  component: Research,
-});
-
-function Research() {
+export function ResearchView() {
   const content = useContent();
   return (
     <>

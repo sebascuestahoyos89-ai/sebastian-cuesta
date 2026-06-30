@@ -1,47 +1,10 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+"use client";
+
+import Link from "next/link";
 import { ArrowLeft, CheckCircle2, ExternalLink } from "lucide-react";
 import { Container } from "@/components/site/primitives";
 import { LinkButton } from "@/components/site/buttons";
-import { en } from "@/content/site";
 import { useContent } from "@/lib/i18n";
-
-export const Route = createFileRoute("/projects/$slug")({
-  loader: ({ params }) => {
-    const project = en.projects.find((p) => p.slug === params.slug);
-    if (!project) throw notFound();
-    return { slug: project.slug, project };
-  },
-  head: ({ loaderData }) => {
-    const t = loaderData?.project.title ?? "Project";
-    return {
-      meta: [
-        { title: `${t} — Sebastian Cuesta Hoyos` },
-        { name: "description", content: loaderData?.project.short ?? "" },
-        { property: "og:title", content: `${t} — Sebastian Cuesta Hoyos` },
-        { property: "og:description", content: loaderData?.project.short ?? "" },
-        { property: "og:url", content: `/projects/${loaderData?.project.slug ?? ""}` },
-        { property: "og:type", content: "article" },
-      ],
-      links: [{ rel: "canonical", href: `/projects/${loaderData?.project.slug ?? ""}` }],
-    };
-  },
-  notFoundComponent: () => <ProjectNotFound />,
-  errorComponent: () => <ProjectNotFound />,
-  component: ProjectDetail,
-});
-
-function ProjectNotFound() {
-  const content = useContent();
-  return (
-    <Container className="py-24 text-center">
-      <h1 className="text-2xl font-bold text-foreground">{content.ui.projects.notFound}</h1>
-      <p className="mt-3 text-muted-foreground">{content.ui.projects.notFoundText}</p>
-      <div className="mt-6 flex justify-center">
-        <LinkButton to="/projects">{content.ui.projects.backToProjects}</LinkButton>
-      </div>
-    </Container>
-  );
-}
 
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -52,8 +15,7 @@ function Block({ title, children }: { title: string; children: React.ReactNode }
   );
 }
 
-function ProjectDetail() {
-  const { slug } = Route.useLoaderData();
+export function ProjectView({ slug }: { slug: string }) {
   const content = useContent();
   const t = content.ui.projects;
   const project = content.projects.find((p) => p.slug === slug) ?? content.projects[0];
@@ -63,7 +25,7 @@ function ProjectDetail() {
       <section className="border-b border-border bg-gradient-hero">
         <Container className="py-12 sm:py-16">
           <Link
-            to="/projects"
+            href="/projects"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
           >
             <ArrowLeft className="h-4 w-4" /> {t.backToProjects}

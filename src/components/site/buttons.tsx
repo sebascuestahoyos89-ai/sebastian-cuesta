@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const base =
@@ -15,23 +15,17 @@ type Variant = keyof typeof variants;
 
 export function LinkButton({
   to,
-  params,
   variant = "primary",
   className,
   children,
 }: {
   to: string;
-  params?: Record<string, string>;
   variant?: Variant;
   className?: string;
   children: ReactNode;
 }) {
   return (
-    <Link
-      to={to}
-      params={params}
-      className={cn(base, variants[variant], className)}
-    >
+    <Link href={to} className={cn(base, variants[variant], className)}>
       {children}
     </Link>
   );

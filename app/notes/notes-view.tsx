@@ -1,26 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+"use client";
+
 import { FileText, Clock } from "lucide-react";
 import { Container, PageHeader } from "@/components/site/primitives";
 import { useContent } from "@/lib/i18n";
 
-export const Route = createFileRoute("/notes")({
-  head: () => ({
-    meta: [
-      { title: "Scientific Notes — Sebastian Cuesta Hoyos" },
-      {
-        name: "description",
-        content:
-          "Short technical articles on biophysical methods, computational chemistry supporting experimental biochemistry, and mechanistic thinking in enzyme science.",
-      },
-      { property: "og:title", content: "Scientific Notes — Sebastian Cuesta Hoyos" },
-      { property: "og:url", content: "/notes" },
-    ],
-    links: [{ rel: "canonical", href: "/notes" }],
-  }),
-  component: Notes,
-});
-
-function Notes() {
+export function NotesView() {
   const content = useContent();
   return (
     <>

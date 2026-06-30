@@ -1,5 +1,17 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Download, Linkedin, Mail, Award, FileText, Clock, FlaskConical, BriefcaseBusiness, ArrowRight } from "lucide-react";
+"use client";
+
+import Link from "next/link";
+import {
+  Download,
+  Linkedin,
+  Mail,
+  Award,
+  FileText,
+  Clock,
+  FlaskConical,
+  BriefcaseBusiness,
+  ArrowRight,
+} from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import headshot from "@/assets/headshot.jpg";
 import { Container, SectionHeading } from "@/components/site/primitives";
@@ -9,26 +21,9 @@ import { ExpertiseIcon } from "@/components/site/ExpertiseIcon";
 import { profile } from "@/content/site";
 import { useContent } from "@/lib/i18n";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Sebastian Cuesta Hoyos | Chemist & Chemical Biologist" },
-      {
-        name: "description",
-        content:
-          "Chemist and chemical biologist combining computational chemistry, enzyme engineering, biochemical methods and pharmaceutical R&D to accelerate the discovery of therapeutic molecules.",
-      },
-      { property: "og:title", content: "Sebastian Cuesta Hoyos | Chemist & Chemical Biologist" },
-      { property: "og:url", content: "/" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
-  component: Home,
-});
-
 const credIcons = [FileText, Award, Clock, BriefcaseBusiness, FlaskConical];
 
-function Home() {
+export function HomeView() {
   const content = useContent();
   const t = content.ui.home;
   const featured = content.projects.filter((p) => !p.draft).slice(0, 3);
@@ -38,7 +33,7 @@ function Home() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
         <img
-          src={heroBg}
+          src={heroBg.src}
           alt=""
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-70"
@@ -76,7 +71,7 @@ function Home() {
             <div className="absolute -inset-3 rounded-[2rem] bg-gradient-accent opacity-20 blur-2xl" />
             <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-card">
               <img
-                src={headshot}
+                src={headshot.src}
                 alt="Portrait placeholder of Sebastian Cuesta Hoyos — replace with professional headshot"
                 className="aspect-[4/5] w-full object-cover"
                 width={800}
@@ -134,8 +129,7 @@ function Home() {
                   ))}
                 </div>
                 <Link
-                  to="/projects/$slug"
-                  params={{ slug: c.slug }}
+                  href={`/projects/${c.slug}`}
                   className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:gap-2.5"
                 >
                   {content.ui.common.readMore} <ArrowRight className="h-4 w-4" />

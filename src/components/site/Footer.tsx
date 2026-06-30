@@ -1,4 +1,6 @@
-import { Link } from "@tanstack/react-router";
+"use client";
+
+import Link from "next/link";
 import { Linkedin, GraduationCap, BadgeCheck, Mail } from "lucide-react";
 import { profile } from "@/content/site";
 import { useContent } from "@/lib/i18n";
@@ -65,7 +67,7 @@ export function Footer() {
             ))}
           </div>
           <div className="mt-4 flex flex-wrap gap-3 text-sm">
-            <Link to="/contact" className="font-medium text-primary hover:underline">
+            <Link href="/contact" className="font-medium text-primary hover:underline">
               {content.ui.common.getInTouch}
             </Link>
             <a href={profile.links.cv} className="font-medium text-primary hover:underline">

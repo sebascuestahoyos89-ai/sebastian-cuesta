@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+"use client";
+
 import { useState } from "react";
 import { GraduationCap, BadgeCheck, Linkedin } from "lucide-react";
 import { Container, PageHeader } from "@/components/site/primitives";
@@ -8,30 +9,15 @@ import { profile } from "@/content/site";
 import { useContent } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/publications")({
-  head: () => ({
-    meta: [
-      { title: "Publications — Sebastian Cuesta Hoyos" },
-      {
-        name: "description",
-        content:
-          "30+ peer-reviewed publications across computational chemistry, drug discovery, molecular modelling, antimicrobial peptides, chemical reactivity, enzyme mechanisms and biocatalysis.",
-      },
-      { property: "og:title", content: "Publications — Sebastian Cuesta Hoyos" },
-      { property: "og:url", content: "/publications" },
-    ],
-    links: [{ rel: "canonical", href: "/publications" }],
-  }),
-  component: Publications,
-});
-
-function Publications() {
+export function PublicationsView() {
   const content = useContent();
   const t = content.ui.publications;
   const [active, setActive] = useState<string>(t.all);
   const filters = [t.all, ...content.publicationCategories];
   const list =
-    active === t.all ? content.publications : content.publications.filter((p) => p.category === active);
+    active === t.all
+      ? content.publications
+      : content.publications.filter((p) => p.category === active);
 
   return (
     <>

@@ -1,4 +1,6 @@
-import { Link } from "@tanstack/react-router";
+"use client";
+
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Project } from "@/content/site";
 import { useContent } from "@/lib/i18n";
@@ -27,8 +29,7 @@ export function ProjectCard({ project }: { project: Project }) {
         ))}
       </div>
       <Link
-        to="/projects/$slug"
-        params={{ slug: project.slug }}
+        href={`/projects/${project.slug}`}
         className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:gap-2.5"
       >
         {content.ui.common.readMore} <ArrowRight className="h-4 w-4" />
