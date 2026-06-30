@@ -78,7 +78,7 @@ function ProjectDetail() {
             {project.short}
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
-            {project.keywords.map((k) => (
+            {project.keywords.map((k: string) => (
               <span
                 key={k}
                 className="rounded-full border border-border bg-background/70 px-3 py-1 text-xs font-medium text-foreground"
@@ -105,7 +105,7 @@ function ProjectDetail() {
             <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
               <h2 className="font-display text-base font-bold text-foreground">Methods & tools</h2>
               <ul className="mt-4 space-y-2.5">
-                {project.methods.map((m) => (
+                {project.methods.map((m: string) => (
                   <li key={m} className="flex gap-2 text-sm text-muted-foreground">
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                     <span>{m}</span>
@@ -116,7 +116,7 @@ function ProjectDetail() {
             <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
               <h2 className="font-display text-base font-bold text-foreground">Skills demonstrated</h2>
               <div className="mt-4 flex flex-wrap gap-2">
-                {project.skills.map((s) => (
+                {project.skills.map((s: string) => (
                   <span
                     key={s}
                     className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground"
