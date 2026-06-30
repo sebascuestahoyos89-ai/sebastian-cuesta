@@ -564,7 +564,7 @@ export const en = {
     },
     footer: {
       blurb:
-        "Chemist & chemical biologist working across biotechnology, biocatalysis, drug discovery and protein science.",
+        "From molecular mechanisms to therapeutic discovery.",
       connect: "Connect",
       contact: "Contact",
       rights: "All rights reserved.",
