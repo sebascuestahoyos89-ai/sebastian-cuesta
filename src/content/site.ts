@@ -498,7 +498,7 @@ export const en = {
   ui: {
     nav: {
       home: "Home",
-      about: "About",
+      about: "Abouts",
       research: "Research / Expertise",
       projects: "Projects",
       publications: "Publications",
