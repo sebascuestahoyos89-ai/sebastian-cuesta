@@ -84,7 +84,7 @@ and [Turnstile server validation](https://developers.cloudflare.com/turnstile/ge
 `app/api/contact/route.ts`, `app/contact/contact-view.tsx`, `app/home-view.tsx`,
 `app/notes/page.tsx`, `app/sitemap.ts`, `src/components/site/Header.tsx`,
 `src/components/site/Footer.tsx`, `src/content/site.ts`, `src/lib/i18n.tsx`,
-`.env.example`, `.gitignore`, `package.json`, `tests/contact.test.mjs`, this guide,
+`.env.example`, `.gitignore`, `.gitattributes`, `package.json`, `tests/contact.test.mjs`, this guide,
 and both `public/sebastian-cuesta-cv-{en,es}.pdf` files. The invalid
 `public/cv-placeholder.pdf` was removed. Existing edits in `app/layout.tsx` and
 `app/robots.ts` are retained in the feature branch.
