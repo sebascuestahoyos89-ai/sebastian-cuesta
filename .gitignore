@@ -9,6 +9,8 @@ lerna-debug.log*
 
 node_modules
 *.local
+*.pre-phase1.bak
+*.tsbuildinfo
 
 # Next.js
 .next/

@@ -19,12 +19,12 @@ import { LinkButton, AnchorButton } from "@/components/site/buttons";
 import { ProjectCard } from "@/components/site/ProjectCard";
 import { ExpertiseIcon } from "@/components/site/ExpertiseIcon";
 import { profile } from "@/content/site";
-import { useContent } from "@/lib/i18n";
+import { useLang } from "@/lib/i18n";
 
 const credIcons = [FileText, Award, Clock, BriefcaseBusiness, FlaskConical];
 
 export function HomeView() {
-  const content = useContent();
+  const { content, lang } = useLang();
   const t = content.ui.home;
   const featured = content.projects.filter((p) => !p.draft).slice(0, 3);
 
@@ -58,7 +58,10 @@ export function HomeView() {
               <LinkButton to="/about" variant="outline">
                 {content.ui.nav.about}
               </LinkButton>
-              <AnchorButton href={profile.links.cv} variant="soft">
+              <AnchorButton
+                href={lang === "es" ? profile.links.cvEs : profile.links.cv}
+                variant="soft"
+              >
                 <Download className="h-4 w-4" /> {content.ui.common.downloadCv}
               </AnchorButton>
             </div>
@@ -113,7 +116,9 @@ export function HomeView() {
                   <ExpertiseIcon name={c.icon} className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 font-display text-lg font-bold text-foreground">{c.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{c.text}</p>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  {c.text}
+                </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {c.keywords.map((k) => (
                     <span
@@ -164,7 +169,10 @@ export function HomeView() {
               <LinkButton to="/contact">
                 <Mail className="h-4 w-4" /> {content.ui.common.contact}
               </LinkButton>
-              <AnchorButton href={profile.links.cv} variant="outline">
+              <AnchorButton
+                href={lang === "es" ? profile.links.cvEs : profile.links.cv}
+                variant="outline"
+              >
                 <Download className="h-4 w-4" /> {content.ui.common.viewCv}
               </AnchorButton>
               <AnchorButton href={profile.links.linkedin} variant="outline">
