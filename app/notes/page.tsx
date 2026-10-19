@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { NotesView } from "./notes-view";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: false },
   title: "Scientific Notes — Sebastian Cuesta Hoyos",
   description:
     "Short technical articles on biophysical methods, computational chemistry supporting experimental biochemistry, and mechanistic thinking in enzyme science.",
