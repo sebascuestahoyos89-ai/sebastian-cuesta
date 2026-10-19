@@ -11,7 +11,7 @@ the intended environment. Configure and test Preview before enabling Production.
 | Variable                           | Value                                                                                                             | Visibility          |
 | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------- |
 | `RESEND_API_KEY`                   | Resend sending API key for the verified domain                                                                    | Secret, server only |
-| `CONTACT_FROM_EMAIL`               | Verified sender, for example `Sebastian Website <hello@sebastiancuesta.com>`                                      | Server only         |
+| `CONTACT_FROM_EMAIL`               | `Sebastian Website <contact@mail.sebastiancuesta.com>` after sending-domain verification                           | Server only         |
 | `CONTACT_TO_EMAILS`                | Exactly two distinct addresses, comma separated: `sebastian.cuestahoyos@manchester.ac.uk` and your personal inbox | Secret, server only |
 | `TURNSTILE_SECRET_KEY`             | Secret for the matching Turnstile widget                                                                          | Secret, server only |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY`   | Public site key for that widget                                                                                   | Public              |
@@ -24,11 +24,13 @@ requires a new deployment of the selected environment.
 
 ## Necessary external actions
 
-1. In [Resend Domains](https://resend.com/domains), add a domain you control and
-   obtain its verification records. Review the exact record type, name and value
-   before making any Cloudflare DNS change. Do not replace existing university,
-   website or mail DNS records. DNS modifications require the owner's approval.
-   Use the verified domain as sender, not Manchester's domain.
+1. In [Resend Domains](https://resend.com/domains), inspect or add
+   `mail.sebastiancuesta.com` with sending enabled and receiving disabled.
+   Obtain the actual verification records from Resend; do not infer their values.
+   Inspect the Cloudflare zone first, then add only missing records required for
+   this sending subdomain with DNS-only settings. The owner authorized these
+   additions. Stop for approval before altering or removing any existing record.
+   Preserve website records and all existing email reception/routing.
 2. Create a **Managed Turnstile widget** in Cloudflare for both production
    hostnames. For Preview, also allow the exact preview hostname and include it in
    `CONTACT_ALLOWED_HOSTNAMES`. Use the matching site/secret key pair.
@@ -45,10 +47,38 @@ requires a new deployment of the selected environment.
    Pushing `main` automatically deploys this project. Production activation is a
    separate decision after real delivery tests pass.
 
-The current connector can list the project but returns HTTP 403 when reading its
-configuration under the `sebascuesta` scope. No Vercel environment writes or DNS
-changes were made. An account with project access must perform the setup above
-or grant the connector appropriate access.
+## Controlled Preview
+
+The Vercel bot reported the feature branch deployment Ready on 19 October 2026:
+[Phase 1 Preview](https://sebastian-cuesta-git-feature-website-phase1-sebascuesta.vercel.app).
+This deployment status does not establish that the contact services are configured.
+
+Scope all seven contact variables to **Preview → feature/website-phase1**.
+Use the exact hostname
+`sebastian-cuesta-git-feature-website-phase1-sebascuesta.vercel.app` in both
+Turnstile and `CONTACT_ALLOWED_HOSTNAMES`, alongside `sebastiancuesta.com` and
+`www.sebastiancuesta.com` for the requested widget configuration. Do not allow
+all `vercel.app` hostnames. Keep Production variables and deployment settings
+unchanged; the enabled flag must remain false there.
+
+Use a Resend sending-only key restricted to `mail.sebastiancuesta.com` for the
+application. If API setup is used, separate temporary management credentials
+from the application key. Limit Cloudflare DNS credentials to Zone Read and
+DNS Edit on `sebastiancuesta.com`, and Turnstile credentials to Turnstile Sites
+Write on the required account. Avoid account-wide settings permissions.
+Store all credentials directly in authorized service settings or a local secret
+store; never in this guide, PR comments, chat or committed files.
+
+References: [Resend API-key restrictions](https://resend.com/docs/api-reference/api-keys/create-api-key),
+[Cloudflare Turnstile API permissions](https://developers.cloudflare.com/turnstile/get-started/widget-management/api/),
+and [Cloudflare scoped API tokens](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/).
+
+The connector initially returned HTTP 403 under the `sebascuesta` scope.
+On 19 October 2026, the owner signed into the official dashboards, enabling
+browser access to the correct Vercel project. The sender, hostname allowlist and
+disabled flag were saved only for Preview on `feature/website-phase1`.
+Production settings remain unchanged. See [service status](PHASE1_SERVICE_STATUS.md)
+for verified progress and outstanding access/configuration steps.
 
 ## Implementation and validation
 
