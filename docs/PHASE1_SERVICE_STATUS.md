@@ -77,8 +77,20 @@ all three Spanish contact-page CV links point to the Spanish PDF.
 Exact allowed Preview hostname:
 `sebastian-cuesta-git-feature-website-phase1-sebascuesta.vercel.app`.
 
-Real English/Spanish email tests, server verification with live Turnstile tokens,
-Resend acceptance IDs, Reply-To checks and confirmation from both inboxes are
-**pending**. The ten mocked route tests still pass. Credentials are configured
-for the controlled Preview test; never enable Production
-or merge `main` without final owner approval.
+The controlled Preview build for commit `8ec74f6` passed. A real English form
+submission passed live Turnstile verification and returned the success UI.
+Resend message `01a17e2d-c5fd-76e9-98d3-87a8910593de` records **Delivered** for
+both configured recipients, with Reply-To set to the visitor's Manchester
+address. The sender is the verified `contact@mail.sebastiancuesta.com` address.
+
+The real Spanish form submission also passed live Turnstile verification and
+returned its Spanish success UI. Resend message
+`01a17e38-34a2-7034-b9af-deb424ef08d3` records **Delivered** for both recipients,
+with the same verified sender and the visitor's address as Reply-To.
+
+Owner confirmation of both messages in both inboxes is still pending. Provider
+delivery events are not proof of inbox placement. The ten
+mocked route tests cover validation, expired/invalid tokens and provider failure
+handling. An unauthenticated direct Preview API probe returned HTTP 401 and was
+stopped; deployment protection was not changed. Never enable Production or
+merge `main` without final owner approval.
