@@ -1,20 +1,20 @@
-# Phase 1 external service status — 19 October 2026
+# Phase 1 external service status — 27 October 2026
 
 This is a configuration progress record, not production approval.
 
 ## Resend
 
 - Created `mail.sebastiancuesta.com` in Ireland (`eu-west-1`).
-- Sending is enabled as a domain capability; DNS verification is **Not Started**.
+- Sending is enabled; Resend reports the domain and all three required records **Verified**.
 - Receiving is disabled. No reception or routing settings were changed.
 - Prepared sender: `Sebastian Website <contact@mail.sebastiancuesta.com>`.
-- No application API key has been created yet. The intended key is sending-only
-  and restricted to this domain.
+- A sending-only application key restricted to this domain was created with
+  owner approval and transferred directly to the feature Preview Vercel Secret.
 
 The official dashboard supplied these required records, relative to the existing
-`sebastiancuesta.com` zone. They have **not** been added. Inspect the existing
-zone before any additions; stop for owner approval on any collision requiring an
-existing record to be changed or removed.
+`sebastiancuesta.com` zone. All three were added on 27 October after inspecting
+the existing records and finding no conflicts. Both original website CNAMEs are
+unchanged. Stop for owner approval before any existing record is changed or removed.
 
 | Type | Name | Content | Proxy | TTL |
 | --- | --- | --- | --- | --- |
@@ -36,10 +36,14 @@ Recheck the current domain dashboard before applying these records.
 
 - Public authoritative nameservers are `alan.ns.cloudflare.com` and
   `ligia.ns.cloudflare.com`.
-- The signed-in account currently lists no DNS zones and one available account.
-  Owner action is required to access the account that holds the existing zone.
-- No zone was added, nameservers changed, or DNS/firewall/routing rules modified.
-- Managed Turnstile widget configuration is prepared, not yet created. Its
+- The owner supplied access to the second Cloudflare account; the active zone
+  was located and its two existing website CNAMEs were inspected.
+- Added only the three DNS-only verification records listed above. No zone,
+  nameserver, existing DNS, firewall or routing configuration was changed.
+- The domain-owning account denies Turnstile access. The widget is prepared in
+  the owner's accessible personal Cloudflare account instead; Turnstile can run
+  independently of DNS-zone hosting.
+- Managed Turnstile widget was created with owner approval. Its
   hostnames are the two production hostnames and the exact Preview hostname below.
   Pre-clearance remains off.
 
@@ -51,11 +55,13 @@ Recheck the current domain dashboard before applying these records.
 - Browser sign-in provides authorized project access.
 - Saved only for **Preview → feature/website-phase1**:
   `CONTACT_FROM_EMAIL`, `CONTACT_ALLOWED_HOSTNAMES`, and
-  `NEXT_PUBLIC_CONTACT_FORM_ENABLED=false`.
-- Secure direct entry of `CONTACT_TO_EMAILS` is pending owner completion; no
-  private address is recorded here.
-- `RESEND_API_KEY`, `TURNSTILE_SECRET_KEY` and the public Turnstile site key are
-  still pending service setup. No placeholder credential is used.
+  `NEXT_PUBLIC_CONTACT_FORM_ENABLED=true` for the controlled acceptance test.
+- `CONTACT_TO_EMAILS` is saved as a Secret only for the same feature Preview,
+  containing exactly the Manchester address and the owner-specified private
+  recipient. No private address is recorded here or in website source.
+- `RESEND_API_KEY` and `TURNSTILE_SECRET_KEY` are saved as Secrets for that
+  branch only. `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is saved as public Config for
+  the same branch. No credential or private recipient is committed.
 - Existing `NEXT_PUBLIC_SITE_URL`, Production environment, domain assignments and
   redirect settings are unchanged.
 
@@ -73,6 +79,6 @@ Exact allowed Preview hostname:
 
 Real English/Spanish email tests, server verification with live Turnstile tokens,
 Resend acceptance IDs, Reply-To checks and confirmation from both inboxes are
-**pending**. The ten mocked route tests still pass. Keep the form disabled until
-credentials are ready for the controlled Preview test; never enable Production
+**pending**. The ten mocked route tests still pass. Credentials are configured
+for the controlled Preview test; never enable Production
 or merge `main` without final owner approval.
