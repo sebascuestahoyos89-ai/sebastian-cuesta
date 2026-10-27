@@ -88,8 +88,11 @@ returned its Spanish success UI. Resend message
 `01a17e38-34a2-7034-b9af-deb424ef08d3` records **Delivered** for both recipients,
 with the same verified sender and the visitor's address as Reply-To.
 
-Owner confirmation of both messages in both inboxes is still pending. Provider
-delivery events are not proof of inbox placement. The ten
+On 27 October, the owner confirmed receipt of both messages in both accounts.
+The personal mailbox classified them as Spam; successful delivery is confirmed,
+but personal-mailbox inbox placement still needs improvement and a follow-up
+test. No additional DMARC/DNS change has been approved or applied.
+Provider delivery events alone are not proof of inbox placement. The ten
 mocked route tests cover validation, expired/invalid tokens and provider failure
 handling. An unauthenticated direct Preview API probe returned HTTP 401 and was
 stopped; deployment protection was not changed. Never enable Production or
