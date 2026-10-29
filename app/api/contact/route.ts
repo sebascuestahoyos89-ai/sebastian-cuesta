@@ -51,6 +51,16 @@ export async function POST(request: Request) {
     .split(",")
     .map((host) => host.trim().toLowerCase())
     .filter(Boolean);
+  // Trust only this deployment's Vercel-provided hostname in Preview.
+  // Turnstile must independently allow the same exact hostname.
+  const previewHost = process.env.VERCEL_URL?.toLowerCase();
+  if (
+    process.env.VERCEL_ENV === "preview" &&
+    previewHost &&
+    /^[a-z0-9-]+\.vercel\.app$/.test(previewHost)
+  ) {
+    allowedHosts.push(previewHost);
+  }
   const allowedOrigins = new Set(allowedHosts.map((host) => `https://${host}`));
   if (process.env.NODE_ENV !== "production") {
     allowedOrigins.add("http://localhost:3000");

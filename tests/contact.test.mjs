@@ -187,3 +187,19 @@ test("configured preview hostname works for origin and verification", async () =
     );
   assert.equal((await POST(request(valid, { origin: "https://preview.example.org" }))).status, 200);
 });
+
+test("trusts only its exact Vercel deployment hostname and only in Preview", async () => {
+  process.env.VERCEL_URL = "website-test-team.vercel.app";
+  process.env.VERCEL_ENV = "preview";
+  globalThis.fetch = async (url) => Response.json(url.includes("siteverify")
+    ? { success: true, hostname: process.env.VERCEL_URL, action: "contact" }
+    : { id: "accepted" });
+  const previewRequest = () => request(valid, { origin: "https://website-test-team.vercel.app" });
+  assert.equal((await POST(previewRequest())).status, 200);
+  assert.equal((await POST(request(valid, { origin: "https://other-team.vercel.app" }))).status, 403);
+  process.env.VERCEL_ENV = "production";
+  assert.equal((await POST(previewRequest())).status, 403);
+  process.env.VERCEL_ENV = "preview";
+  process.env.VERCEL_URL = "website-test-team.vercel.app/invalid";
+  assert.equal((await POST(previewRequest())).status, 403);
+});
