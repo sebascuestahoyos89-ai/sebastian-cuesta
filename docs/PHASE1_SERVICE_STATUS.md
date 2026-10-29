@@ -1,6 +1,10 @@
-# Phase 1 external service status — 27 October 2026
+# Phase 1 external service status — updated 29 October 2026
 
 This is a configuration progress record, not production approval.
+
+See [release preparation](PHASE1_RELEASE.md) for the current reviewed commit,
+eleven-test result, resolved Vercel connector access, network-filtering blocker,
+pending Production configuration, and deployment/rollback procedure.
 
 ## Resend
 
@@ -50,8 +54,8 @@ Recheck the current domain dashboard before applying these records.
 ## Vercel
 
 - Correct dashboard project: `sebascuesta/sebastian-cuesta`.
-- Connector authentication identifies the user but exposes no accessible teams;
-  the previously failed project endpoint was not retried with unchanged credentials.
+- The owner authorized connector team access on 29 October. Deployment and
+  environment metadata inspection now succeeds for the correct team/project.
 - Browser sign-in provides authorized project access.
 - Saved only for **Preview → feature/website-phase1**:
   `CONTACT_FROM_EMAIL`, `CONTACT_ALLOWED_HOSTNAMES`, and
@@ -64,6 +68,10 @@ Recheck the current domain dashboard before applying these records.
   the same branch. No credential or private recipient is committed.
 - Existing `NEXT_PUBLIC_SITE_URL`, Production environment, domain assignments and
   redirect settings are unchanged.
+
+The exact deployment hostname
+`sebastian-cuesta-1djc8zbxm-sebascuesta.vercel.app` was also added to Turnstile
+for the final retest. Managed mode and pre-clearance off are preserved.
 
 ## Preview and acceptance
 
