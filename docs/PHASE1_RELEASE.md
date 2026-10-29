@@ -4,9 +4,11 @@
 
 Do not merge or deploy yet. The owner authorized release preparation while the
 final Preview inbox-placement retest is blocked by network filtering. No
-Production variable writes were applied: approval review rejected the attempted
-disabled configuration write because final approval for Production changes is
-required. Production contact activation needs a separate explicit decision.
+Production secret writes were applied. Approval review initially rejected the
+disabled configuration write; the owner subsequently gave explicit final approval
+for the four Config variables below, which were saved and read back successfully.
+The enable flag is `false`. Production contact activation needs a separate
+explicit decision. No merge or Production deployment was requested or performed.
 
 ## Reviewed release
 
@@ -56,7 +58,7 @@ Once normal HTTPS access is restored:
 4. Verify both language forms still render correctly on the final release code.
    Any application change after acceptance needs appropriate revalidation.
 
-## Proposed Production configuration — approval pending
+## Production configuration — four Config values saved; Secrets pending
 
 Target only `sebascuesta/sebastian-cuesta`, project
 `prj_uYuBAB4XrpTlRGcQlEUirmMvU9OO`. Preserve `NEXT_PUBLIC_SITE_URL`.
@@ -70,6 +72,10 @@ Target only `sebascuesta/sebastian-cuesta`, project
 | `TURNSTILE_SECRET_KEY` | Matching existing widget secret, transferred directly through authorized settings | Secret |
 | `RESEND_API_KEY` | Separate sending-only Production key restricted to `mail.sebastiancuesta.com` | Secret |
 | `CONTACT_TO_EMAILS` | Exactly the two owner-approved recipients, entered securely in Vercel | Secret |
+
+The four Config rows were saved for Production only on 29 October and verified
+by reading each value back, including the exact `false` enable flag. The three
+Secret rows remain pending; existing Preview credentials were not read or changed.
 
 Production and Preview Secrets cannot be retrieved with `vercel env pull`.
 Do not print, commit, screenshot, or store credential values or private recipient

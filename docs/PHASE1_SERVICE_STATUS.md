@@ -66,8 +66,12 @@ Recheck the current domain dashboard before applying these records.
 - `RESEND_API_KEY` and `TURNSTILE_SECRET_KEY` are saved as Secrets for that
   branch only. `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is saved as public Config for
   the same branch. No credential or private recipient is committed.
-- Existing `NEXT_PUBLIC_SITE_URL`, Production environment, domain assignments and
-  redirect settings are unchanged.
+- Existing `NEXT_PUBLIC_SITE_URL`, domain assignments and redirect settings are
+  unchanged. After explicit owner approval on 29 October, four Production Config
+  values were saved and read back: sender, production-only hostname allowlist,
+  existing public widget key, and `NEXT_PUBLIC_CONTACT_FORM_ENABLED=false`.
+  The three Production Secrets remain pending. No Production deployment or merge
+  was performed; Preview values were not changed.
 
 The exact deployment hostname
 `sebastian-cuesta-1djc8zbxm-sebascuesta.vercel.app` was also added to Turnstile
