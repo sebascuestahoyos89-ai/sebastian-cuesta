@@ -3,7 +3,9 @@ import "./globals.css";
 import { Providers } from "./providers";
 import { profile, en } from "@/content/site";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const SITE_URL = new URL(
+  process.env.NEXT_PUBLIC_SITE_URL || "https://sebastiancuesta.com",
+).origin;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
