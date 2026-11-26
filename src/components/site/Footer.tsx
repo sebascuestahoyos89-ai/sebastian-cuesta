@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { Linkedin, GraduationCap, BadgeCheck, Mail } from "lucide-react";
 import { profile } from "@/content/site";
-import { useContent } from "@/lib/i18n";
+import { useLang } from "@/lib/i18n";
 
 export function Footer() {
-  const content = useContent();
+  const { content, lang } = useLang();
   return (
     <footer className="border-t border-border bg-secondary/40">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.5fr_1fr_1fr] lg:px-8">
@@ -71,7 +71,7 @@ export function Footer() {
               {content.ui.common.getInTouch}
             </Link>
             <a
-              href={profile.links.cv}
+              href={lang === "es" ? profile.links.cvEs : profile.links.cv}
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-primary hover:underline"

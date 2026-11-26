@@ -17,7 +17,6 @@ export function Header() {
   const nav = [
     { to: "/about", label: content.ui.nav.about },
     { to: "/projects", label: content.ui.nav.work },
-    { to: "/notes", label: content.ui.nav.notes },
     { to: "/contact", label: content.ui.nav.contact },
   ] as const;
 
@@ -63,7 +62,7 @@ export function Header() {
             <span className={cn(lang === "es" && "text-foreground")}>ES</span>
           </button>
           <a
-            href={profile.links.cv}
+            href={lang === "es" ? profile.links.cvEs : profile.links.cv}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden items-center gap-2 rounded-md bg-gradient-accent px-3.5 py-2 text-sm font-semibold text-primary-foreground shadow-soft transition-transform hover:-translate-y-0.5 sm:inline-flex"
@@ -75,6 +74,8 @@ export function Header() {
             className="inline-flex items-center justify-center rounded-md p-2 text-foreground lg:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -82,6 +83,8 @@ export function Header() {
       </div>
 
       <div
+        id="mobile-navigation"
+        inert={!open}
         className={cn(
           "overflow-hidden border-t border-border/70 bg-background lg:hidden",
           open ? "max-h-[28rem]" : "max-h-0",
@@ -96,16 +99,14 @@ export function Header() {
               onClick={() => setOpen(false)}
               className={cn(
                 "rounded-md px-3 py-2.5 text-sm font-medium",
-                isActive(item.to)
-                  ? "bg-secondary text-foreground"
-                  : "text-muted-foreground",
+                isActive(item.to) ? "bg-secondary text-foreground" : "text-muted-foreground",
               )}
             >
               {item.label}
             </Link>
           ))}
           <a
-            href={profile.links.cv}
+            href={lang === "es" ? profile.links.cvEs : profile.links.cv}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-1 inline-flex items-center gap-2 rounded-md bg-gradient-accent px-3.5 py-2.5 text-sm font-semibold text-primary-foreground"

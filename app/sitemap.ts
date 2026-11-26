@@ -1,14 +1,13 @@
 import type { MetadataRoute } from "next";
 import { en } from "@/content/site";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const SITE_URL = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://sebastiancuesta.com").origin;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths: { path: string; priority: number }[] = [
     { path: "/", priority: 1.0 },
     { path: "/about", priority: 0.8 },
     { path: "/projects", priority: 0.8 },
-    { path: "/notes", priority: 0.5 },
     { path: "/contact", priority: 0.6 },
   ];
 

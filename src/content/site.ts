@@ -13,11 +13,7 @@ export type Lang = "en" | "es";
 // publications from a single filter bar. Labels per language live in each
 // bundle's `themes`.
 export type ThemeId =
-  | "biocatalysis"
-  | "computational"
-  | "mechanisms"
-  | "proteins"
-  | "antimicrobial";
+  "biocatalysis" | "computational" | "mechanisms" | "proteins" | "antimicrobial";
 
 export type Theme = { id: ThemeId; label: string };
 
@@ -31,9 +27,10 @@ export const profile = {
       "https://scholar.google.com/citations?hl=en&user=5BNhpcIAAAAJ&view_op=list_works&sortby=pubdate",
     orcid: "https://orcid.org/0000-0002-8035-6220",
     email: "mailto:sebastian.cuestahoyos@manchester.ac.uk",
-    cv: "/cv-placeholder.pdf", // [upload final CV PDF to /public/]
+    cv: "/sebastian-cuesta-cv-en.pdf",
+    cvEs: "/sebastian-cuesta-cv-es.pdf",
   },
-  emails: ["sebastian.cuestahoyos@manchester.ac.uk", "sebastian_cuesta@yahoo.com"],
+  emails: ["sebastian.cuestahoyos@manchester.ac.uk"],
   emailDisplay: "sebastian.cuestahoyos@manchester.ac.uk",
 };
 
@@ -84,7 +81,8 @@ export type NoteItem = { title: string; status: string };
 // ----------------------------------------------------------------------------
 const enzymeArticles: Article[] = [
   {
-    title: "Cryptic enzymatic assembly of peptides armed with β-lactone warheads — Nature Chemical Biology (2024)",
+    title:
+      "Cryptic enzymatic assembly of peptides armed with β-lactone warheads — Nature Chemical Biology (2024)",
     url: "https://www.nature.com/articles/s41589-024-01657-7",
   },
 ];
@@ -255,7 +253,12 @@ const projects: Project[] = [
     relevance:
       "Membrane-protein biochemistry supports anti-infective discovery and a broad range of therapeutic programmes.",
     outputs: "Outputs from this current work will be added as results become publicly shareable.",
-    skills: ["Membrane proteins", "Protein purification", "Biophysical methods", "Biochemical assays"],
+    skills: [
+      "Membrane proteins",
+      "Protein purification",
+      "Biophysical methods",
+      "Biochemical assays",
+    ],
     draft: true,
   },
 ];
@@ -263,8 +266,7 @@ const projects: Project[] = [
 export const en = {
   profile: {
     role: "Postdoctoral Research Associate, University of Manchester",
-    tagline:
-      "From molecular mechanisms to therapeutic discovery.",
+    tagline: "From molecular mechanisms to therapeutic discovery.",
   },
   credibility: [
     "30+ peer-reviewed publications",
@@ -480,7 +482,10 @@ export const en = {
   ] as NoteItem[],
   education: [
     { degree: "PhD in Chemical Biology", school: "University of Manchester" },
-    { degree: "MSc in Drug Discovery and Translational Biology", school: "University of Edinburgh" },
+    {
+      degree: "MSc in Drug Discovery and Translational Biology",
+      school: "University of Edinburgh",
+    },
     { degree: "BSc in Chemistry", school: "Pontifical Catholic University of Ecuador" },
   ] as EducationItem[],
   professionalBackground: [
@@ -498,7 +503,7 @@ export const en = {
   ui: {
     nav: {
       home: "Home",
-      about: "Abouts",
+      about: "About",
       research: "Research / Expertise",
       projects: "Projects",
       publications: "Publications",
@@ -611,8 +616,7 @@ export const en = {
         "Thank you — your message is noted. This is a placeholder form; connect it to an email service or backend to receive submissions.",
     },
     footer: {
-      blurb:
-        "From molecular mechanisms to therapeutic discovery.",
+      blurb: "From molecular mechanisms to therapeutic discovery.",
       connect: "Connect",
       contact: "Contact",
       rights: "All rights reserved.",
