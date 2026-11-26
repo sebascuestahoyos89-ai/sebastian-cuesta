@@ -2,13 +2,16 @@
 
 ## Current decision
 
-Do not merge or deploy yet. The owner authorized release preparation while the
-final Preview inbox-placement retest is blocked by network filtering. No
+On 26 November 2026, the owner requested publication of the completed website.
+Release the website with the Production contact form disabled. The final
+inbox-placement retest and Production secrets remain prerequisites for activating
+the contact form; they do not block publication of the content and CV updates. No
 Production secret writes were applied. Approval review initially rejected the
 disabled configuration write; the owner subsequently gave explicit final approval
 for the four Config variables below, which were saved and read back successfully.
 The enable flag is `false`. Production contact activation needs a separate
-explicit decision. No merge or Production deployment was requested or performed.
+explicit decision. The following sections retain the preparation evidence;
+check Vercel and PR #1 for the resulting release status.
 
 ## Reviewed release
 
